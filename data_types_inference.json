@@ -1,0 +1,11 @@
+{"month":"int",
+ "day":"int", 
+ "time":"datetime64", 
+ "amount":"str",
+ "use_chip":"str",
+ "merchant_name":"str", 
+ "merchant_city":"str", 
+ "merchant_state":"str", 
+ "zip":"str", 
+ "MCC":"str",
+ "errors":"str"}
