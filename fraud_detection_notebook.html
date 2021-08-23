@@ -14005,7 +14005,7 @@ a.anchor-link {
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>The objective of this exercise is to create a Machine Learning model that allows to predict if a transaction is fraudulent or not by using information about the transaction. From an operational standpoint, this model will label the transaction as fraudulent or not <em>after</em> the transaction was done.</p>
 <p>In terms of Machine Learning, this is a <em>binary classification problem</em>. This means that the model will use relevant features to predict a <em>label</em> (in this case, <em>is_fraud</em>) that can have only two possible values (1/<em>Yes</em>/fraudulent and 0/<em>No</em>/not-fraudulent in this case). As I will explain in the cells below, the <em>features</em> used in this case are both <em>categorical</em> (i.e.: variables with a given set of values) and <em>numerical</em> (i.e.: variables with numerical values). For this case, the algorithm I will use is <em>gradient boosting</em>. This algorithm trains an ensemble of many week learners (in this case, decision trees).</p>
-<p>The dataset used for this exercise is a synthetic dataset multi-agent virtual world simulation performed by IBM. This dataset contains transactions for 2000 synthetic consumers that have more than 1 card (credit card, debit card, prepaid card, etc.), reside in the USA but also traveled abroad. For more details, the paper can be found <a href="https://arxiv.org/abs/1910.03033">here</a>.</p>
+<p>The dataset used for this exercise is a synthetic dataset created by using multi-agent virtual world simulation performed by IBM. This dataset contains transactions for 2000 synthetic consumers that have more than 1 card (credit card, debit card, prepaid card, etc.), reside in the USA but also traveled abroad. For more details, the paper can be found <a href="https://arxiv.org/abs/1910.03033">here</a>.</p>
 
 </div>
 </div>
@@ -14239,7 +14239,7 @@ Percentage of fraudulent transactions with null zip and merchant_state: 0.674%
 <p>The result in the cell above is very relevant because:</p>
 <ol>
 <li>for nulls in <em>zip</em>, the percentage of fraudulent operations is almost 7 times the ratio for the overall population (0.122% vs 0.863%).</li>
-<li>for nulls in merchant_state, the percentage of fraudulent operations is almost 5 times that ratio the ratio for the overall population (0.122% vs 0.674%). </li>
+<li>for nulls in <em>merchant_state</em>, the percentage of fraudulent operations is almost 5 times that ratio the ratio for the overall population (0.122% vs 0.674%). </li>
 <li>From the 29757 total fraudulent transaction, 24852 (83.4%) have <em>null</em> values for zip code and <em>18349</em> (61.6%) have <em>null</em> values for both zip and merchant_state.</li>
 </ol>
 <p>These results tell that, when a transaction has an unknown zip or merchant_state, then is much more probable that the transaction is a fraudulent transaction with respect to the population overall value (5 to 7 times, depending on which one of the features looks at). Also, 83.4% of the fraudulent transactions have at least one of these two fields with missing values. So, the transactions with unknown zip and/or merchant_state should be carefully tracked.</p>
@@ -14261,7 +14261,7 @@ Percentage of fraudulent transactions with null zip and merchant_state: 0.674%
 <p>Before proceeding to the EDA, is necessary to perform some transformations over the data. These transformations are:</p>
 <ol>
 <li>All the features in this dataset are string by default. Because of that, is necessary to cast them to the correct data type. To automate this process, I created a <em>data_types.json</em> dictionary. This dictionary contains all the dataset features and their corresponding types (int, float, or string) to cast them.</li>
-<li>The <em>amount</em> feature is formatted as ${<em>trasaction_amount</em>},  and this <em>transaction_amount</em> must be parsed and casted as a float. To perform these two tasks, the <em>data_adequation()</em> function was deployed. </li>
+<li>The <em>amount</em> feature is formatted as ${<em>trasaction_amount</em>},  and this <em>transaction_amount</em> must be parsed and casted as a float. </li>
 <li>The feature <em>time</em> (transaction time) has minute resolution, and this is an unnecessary high granularity in the data. Because of that,  I parsed the time column to an <em>hour</em> column.</li>
 <li>Almost 98.4% of the values in <em>errors</em> are missing values. This can be interpreted as "correct transactions". Because of that, these missing values will be filled with <em>unknown</em>.</li>
 </ol>
@@ -14999,25 +14999,25 @@ Non-fraudulent instances in the undersampled dataset:  595140
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>Fitting 3 folds for each of 36 candidates, totalling 108 fits
       Iter       Train Loss   Remaining Time 
-         1           0.3009            3.03m
-         2           0.2729            2.88m
-         3           0.2531            2.85m
-         4           0.2384            2.79m
-         5           0.2271            2.76m
-         6           0.2165            2.75m
-         7           0.2086            2.73m
-         8           0.2010            2.69m
-         9           0.1956            2.67m
-        10           0.1897            2.67m
-        20           0.1629            2.46m
-        30           0.1493            2.27m
-        40           0.1397            2.08m
-        50           0.1340            1.90m
-        60           0.1293            1.70m
-        70           0.1259            1.51m
-        80           0.1218            1.32m
-        90           0.1183            1.13m
-       100           0.1159           56.56s
+         1           0.3009            2.98m
+         2           0.2729            2.80m
+         3           0.2529            2.81m
+         4           0.2385            2.78m
+         5           0.2268            2.76m
+         6           0.2160            2.74m
+         7           0.2081            2.72m
+         8           0.2006            2.71m
+         9           0.1951            2.67m
+        10           0.1898            2.63m
+        20           0.1618            2.41m
+        30           0.1504            2.22m
+        40           0.1409            2.04m
+        50           0.1350            1.85m
+        60           0.1299            1.66m
+        70           0.1256            1.48m
+        80           0.1228            1.29m
+        90           0.1188            1.11m
+       100           0.1159           55.42s
 </pre>
 </div>
 </div>
@@ -15192,29 +15192,29 @@ Non-fraudulent instances in the undersampled dataset:  595140
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>-------------------------------CM-----------------------------
 CM train sample: 
-[[475463    591]
- [  4953  18910]]
+[[475470    584]
+ [  4946  18917]]
 CM test sample: 
-[[118864    222]
- [  1238   4656]]
+[[118914    172]
+ [  1254   4640]]
 ---------------------------Accuracy---------------------------
-Accuracy score for train sample: 0.9889101590864083
-Accuracy score for test sample: 0.9883181309009441
+Accuracy score for train sample: 0.9889381637351801
+Accuracy score for test sample: 0.9885901744279084
 ----------------------------Precision--------------------------
-Recall score for train sample: 0.7924401793571638
-Recall score for test sample: 0.7899558873430608
+Recall score for train sample: 0.792733520512928
+Recall score for test sample: 0.7872412623006447
 ----------------------------Recall-----------------------------
-Precision score for train sample: 0.9696938618532382
-Precision score for test sample: 0.9544895448954489
+Precision score for train sample: 0.9700528178042152
+Precision score for test sample: 0.9642560266001663
 --------------------------f1-score-----------------------------
-f1-score score for train sample: 0.8721520154967254
-f1-score for test sample: 0.8644634236910509
+f1-score score for train sample: 0.8724748639424407
+f1-score for test sample: 0.8668036614982254
 -----------------------------TNR-------------------------------
-TNR score for train sample: 0.9987585441987674
-TNR score for test sample: 0.9981358010177519
+TNR score for train sample: 0.9987732484129952
+TNR score for test sample: 0.9985556656533934
 ------------------------------AUC------------------------------
-AUC score for train sample: 0.9603995954639251
-AUC score for test sample: 0.9613776430592791
+AUC score for train sample: 0.9620919899497697
+AUC score for test sample: 0.9625955625160606
 </pre>
 </div>
 </div>
@@ -15229,13 +15229,13 @@ AUC score for test sample: 0.9613776430592791
 <p>As we can see in the cell above, the values for all the metrics are very similar for the train sample and the test sample. This is a good sign of the absence of overfitting. By analyzing these metrics, some relevant insights about the model performance can be found:</p>
 <ol>
 <li>The model has an accuracy of 0.988 (98.8%) for the test sample. This can be interpreted as the model predicts correctly 98 over 100 instances. This can be sound very exciting but, as this problem is an unbalanced classification problem, this metric isn´t the most robust metric to evaluate a model because a high number of TN can lead to a high accuracy despite the number of TP (which is what is valuable to predict in this case).</li>
-<li>The model has a recall of 0.789 (78,9%) for the test sample. This can be interpreted as this model can predict as <em>label 1</em> (<em>fraudulent</em>) 79 of 100 target instances; it predicted almost 4 over 5 fraudulent transactions for the test sample.</li>
-<li>The model has a precision of 0.954 (95.4%) for the test sample. This can be interpreted as 95 over 100 instances that the model label as <em>fraudulent</em> are actually <em>fraudulent</em> for the test dataset.</li>
-<li>The model has an f1-score of 0.864. This is a very good value because tells to us that both <em>recall</em> and <em>precision</em> metrics have acceptable values. As I said before, this is an "overall metric".</li>
-<li>The model has a TNR rate of 0.998 (99.8%) for the test sample. This can be intepreted as 998 over 1000 instantes that the model label as <em>non-fraudulent</em> are actually <em>non-fraudulent</em>.</li>
+<li>The model has a recall of 0.787 (78,7%) for the test sample. This can be interpreted as this model can predict as <em>label 1</em> (<em>fraudulent</em>) 79 of 100 target instances; it predicted almost 4 over 5 fraudulent transactions for the test sample.</li>
+<li>The model has a precision of 0.964 (96.4%) for the test sample. This can be interpreted as 96 over 100 instances that the model label as <em>fraudulent</em> are actually <em>fraudulent</em> for the test dataset.</li>
+<li>The model has an f1-score of 0.866. This is a very good value because tells to us that both <em>recall</em> and <em>precision</em> metrics have acceptable values. As I said before, this is an "overall metric".</li>
+<li>The model has a TNR rate of 0.999 (99.9%) for the test sample. This can be intepreted as 999 over 1000 instantes that the model label as <em>non-fraudulent</em> are actually <em>non-fraudulent</em>.</li>
 <li>The model has an AUC score of 0.96. This value is great because a perfect classifier has an AUC score of 1.</li>
 </ol>
-<p>As an overview of the analysis above, this model trained is very precise (i.e.: when a model label an instance as fraudulent, this label is very reliable) because, <strong>for the test sample taken from the undersampled dataset</strong>, 96 over 100 fraudulent transactions were labeled as fraudulent by the model are actually fraudulent. Also, by looking at the recall, is possible to say that this model can predict almost 4 over 5 fraudulent instances for the test sample. This value is OK, but in a real-world application, this means that the model will miss 1 over 5 fraudulent transactions. Because of that, this is an aspect of the model that may be improved. Also, the model has a good sensibility to predict the <em>non-fraudulent</em> transactios, because for the test dataset the model labeled correctly as <em>non-fraudulent</em> ----- over 100 transactions.</p>
+<p>As an overview of the analysis above, this model trained is very precise (i.e.: when a model label an instance as fraudulent, this label is very reliable) because, <strong>for the test sample taken from the undersampled dataset</strong>, 96 over 100 fraudulent transactions were labeled as fraudulent by the model are actually fraudulent. Also, by looking at the recall, is possible to say that this model can predict almost 4 over 5 fraudulent instances for the test sample. This value is OK, but in a real-world application, this means that the model will miss 1 over 5 fraudulent transactions. Because of that, this is an aspect of the model that may be improved. Also, the model has a good sensibility to predict the <em>non-fraudulent</em> transactios, because for the test dataset the model labeled correctly as <em>non-fraudulent</em> 999 over 1000 transactions.</p>
 
 </div>
 </div>
@@ -15252,7 +15252,7 @@ AUC score for test sample: 0.9613776430592791
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[73]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">pred_over_new_data</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span> <span class="n">path_to_model</span><span class="p">,</span> <span class="n">data_types_path</span><span class="o">=</span><span class="s2">&quot;./data_types_inference.json&quot;</span><span class="p">):</span>
@@ -15283,7 +15283,7 @@ AUC score for test sample: 0.9613776430592791
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[74]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[18]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">sample_from_real_world</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5000000</span><span class="p">)</span> <span class="c1">#Getting a 5M sample from the raw dataset</span>
@@ -15317,12 +15317,12 @@ AUC score for test sample: 0.9613776430592791
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>Confusion matrix
-[[4985392    8323]
- [   1302    4983]]
-Accuracy:  0.998075
-Recall:  0.7928400954653938
-Precision:  0.374492710055614
-TNR:  0.9983333049643401
+[[4986547    7276]
+ [   1288    4889]]
+Accuracy:  0.9982872
+Recall:  0.7914845394204306
+Precision:  0.40189066995478834
+TNR:  0.9985430000222275
 </pre>
 </div>
 </div>
@@ -15334,7 +15334,7 @@ TNR:  0.9983333049643401
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>As can be seen in the cell above, the recall, accuracy and TNR scores remain the same that the test sample with 1:20 ratio,  but the precision drastically decreases. This is expected (and it is also OK) because the model was trained using a data sample with a ratio between fraudulent and non-fraudulent instances of 1:20, but the real data has a ratio of 1:818. Because of that, the increase in absolute terms of the <em>non-fraudulent</em> transactions in the <em>sample_from_real_world</em> dataset caused an increase in the number of FP (<em>false positives</em>) registered that scales with the <em>TNR score</em>. And that increase in the FP is what caused a decrease in the precision of the classifier. In this test, the decrease in the precision score is not related to an issue with the model performance; is related to a change in the ratio between <em>fraudulent</em> and <em>not-fraudulent</em> instances in the dataset used with respect to the dataset used to train the model.</p>
+<p>As can be seen in the cell above, the recall, accuracy and TNR scores remain the same that for the test sample with 1:20 ratio,  but the precision drastically decreases. This is expected (and it is also OK) because the model was trained using a data sample with a ratio between fraudulent and non-fraudulent instances of 1:20, but the real data has a ratio of 1:818. Because of that, the increase in absolute terms of the <em>non-fraudulent</em> transactions in the <em>sample_from_real_world</em> dataset caused an increase in the number of FP (<em>false positives</em>) registered that scales with the <em>TNR score</em>. And that increase in the FP is what caused a decrease in the precision of the classifier. In this test, the decrease in the precision score is not related to an issue with the model performance; is related to a change in the ratio between <em>fraudulent</em> and <em>not-fraudulent</em> instances in the dataset used with respect to the dataset used to train the model.</p>
 
 </div>
 </div>
@@ -15364,7 +15364,7 @@ TNR:  0.9983333049643401
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Now we found that it is possible to train a reasonable model to predict if a transaction is fraudulent or not (with the limitations commented in the cells above), it is time to discuss (in a shallow way) how to deploy this model in a production environment. One way is to create an API using , for example, Flask. This API will consume the data of a done transaction, and returns as output a label to tag it. This API will also use the pre-trained model, and can be embedded inside a Web Application or similar scheme making the integration to an existing process relatively easy.</p>
+<p>Now we found that it is possible to train a reasonable model to predict if a transaction is fraudulent or not (with the limitations commented in the cells above), it is time to discuss (in a shallow way) how to deploy this model in a production environment. One way is to create an API. This API will consume the data of a done transaction, and returns as output a label to tag it. This API will also use the pre-trained model, and can be embedded inside a Web Application or similar scheme making the integration to an existing process relatively easy.</p>
 
 </div>
 </div>
